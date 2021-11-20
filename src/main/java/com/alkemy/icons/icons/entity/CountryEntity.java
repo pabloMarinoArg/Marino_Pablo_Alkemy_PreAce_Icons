@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,7 +21,7 @@ public class CountryEntity {
     private Long superficie;
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name="continente_id", insertable = false, updatable = false)
-    private ContinentEntity continente;
+    private ContinenteEntity continente;
     @Column(name = "continente_id", nullable = false)
     private Long continenteId;
     @ManyToMany(
