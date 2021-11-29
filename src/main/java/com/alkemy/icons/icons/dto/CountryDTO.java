@@ -1,5 +1,6 @@
 package com.alkemy.icons.icons.dto;
 
+import com.alkemy.icons.icons.entity.ContinenteEntity;
 import com.alkemy.icons.icons.entity.IconsEntity;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ public class CountryDTO {
     private String imagen;
     private String denominacion;
     private Long cantidadHabitantes;
+    private ContinenteEntity continente;
     private Long superficie;
     private Set<IconsEntity> iconos = new HashSet<>();
 

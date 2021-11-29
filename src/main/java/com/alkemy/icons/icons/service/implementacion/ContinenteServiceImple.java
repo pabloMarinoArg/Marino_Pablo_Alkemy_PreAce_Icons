@@ -21,14 +21,17 @@ public class ContinenteServiceImple implements ContinenteService {
     public ContinenteDTO save(ContinenteDTO continenteDTO) {
         ContinenteEntity entity = continenteMapper.continenteDTO2Entity(continenteDTO);
         ContinenteEntity entitySaved = continenteRepository.save(entity);
-        ContinenteDTO result = continenteMapper.continenteEntity2Dto(entitySaved);
-        return result;
+        return continenteMapper.continenteEntity2Dto(entitySaved);
     }
 
     @Override
     public List<ContinenteDTO> findAllContinentes() {
         List<ContinenteEntity> entities = continenteRepository.findAll();
-        List<ContinenteDTO> result = continenteMapper.continenteEntityList2DTOList(entities);
-        return result;
+        return continenteMapper.continenteEntityList2DTOList(entities);
+    }
+
+    @Override
+    public void delete(Long id) {
+        continenteRepository.deleteById(id);
     }
 }

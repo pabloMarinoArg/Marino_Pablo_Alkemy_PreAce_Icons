@@ -1,6 +1,7 @@
 package com.alkemy.icons.icons.controller;
 
 import com.alkemy.icons.icons.dto.ContinenteDTO;
+import com.alkemy.icons.icons.entity.ContinenteEntity;
 import com.alkemy.icons.icons.service.ContinenteService;
 import com.alkemy.icons.icons.service.implementacion.ContinenteServiceImple;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,15 @@ public class ContinenteController {
         List<ContinenteDTO> listado = continenteService.findAllContinentes();
         return ResponseEntity.ok().body(listado);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+
+        continenteService.delete(id);
+
+        return new ResponseEntity<>("The continent was deleted",HttpStatus.OK);
+    }
+
 
 
 
