@@ -4,7 +4,9 @@ import com.alkemy.icons.icons.entity.ContinenteEntity;
 import com.alkemy.icons.icons.entity.IconsEntity;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -13,9 +15,9 @@ public class CountryDTO {
     private String imagen;
     private String denominacion;
     private Long cantidadHabitantes;
-    private ContinenteEntity continente;
+    private Long continenteId;
     private Long superficie;
-    private Set<IconsEntity> iconos = new HashSet<>();
+    private List<IconoDTO> iconos = new ArrayList<>();
 
 
 }

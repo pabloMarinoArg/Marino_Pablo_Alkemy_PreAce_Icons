@@ -8,7 +8,7 @@ import java.util.List;
 public interface CountryService {
 
     CountryDTO save(CountryDTO countryDTO );
-    List<CountryDTO> findAllConuntries();
+    List<CountryDTO> findAllCountries();
     void delete(Long id);
 
 
