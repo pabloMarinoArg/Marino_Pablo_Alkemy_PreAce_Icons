@@ -7,6 +7,7 @@ import com.alkemy.icons.icons.entity.IconsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.swing.text.html.parser.Entity;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -26,6 +27,17 @@ public class IconMapper {
         iconsEntity.setHistoria(iconoDTO.getHistoria());
         return iconsEntity;
 
+    }
+
+    public List<IconoDTO> iconEntitySet2DTOList(Collection<IconsEntity> entities, Boolean loadPaises){
+
+        List<IconoDTO> dtos = new ArrayList<>();
+        for (IconsEntity iconos : entities
+             ) {
+            dtos.add(this.iconEntityToDto(iconos,loadPaises));
+        }
+
+        return dtos;
     }
 
     /*Entities list to DTO must have a boolean*/
