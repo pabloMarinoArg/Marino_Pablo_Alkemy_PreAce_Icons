@@ -8,10 +8,10 @@ import lombok.Setter;
 public class CountryFilterDTO {
 
     private String name;
-    private String idContinente;
+    private Long idContinente;
     private String order;
 
-    public CountryFilterDTO(String name, String idContinente, String order) {
+    public CountryFilterDTO(String name, Long idContinente, String order) {
         this.name = name;
         this.idContinente = idContinente;
         this.order = order;

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.util.NumberUtils;
 
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
@@ -33,17 +34,17 @@ public class CountrySpecification {
                 );
             }
 
-           /* if(StringUtils.hasLength(countryFilterDTO.getIdContinente())){
-
+            //si lo descomento todas las consultas vuelven con error
+         /*   if(!NumberUtils.STANDARD_NUMBER_TYPES.isEmpty()){
                 predicates.add(
                         criteriaBuilder.equal(
-                                criteriaBuilder.lower(root.get("continente")),
-                                Integer.parseInt(countryFilterDTO.getIdContinente());
+                                criteriaBuilder.lower(root.get("idContinente")),
+                                countryFilterDTO.getIdContinente()
                         )
+
                 );
 
             }*/
-
 
             //Remove duplicates
             query.distinct(true);

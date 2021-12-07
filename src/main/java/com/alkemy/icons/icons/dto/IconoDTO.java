@@ -1,6 +1,7 @@
 package com.alkemy.icons.icons.dto;
 
 import com.alkemy.icons.icons.entity.CountryEntity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 @Data
+
 public class IconoDTO {
     private Long id;
     private String imagen;

@@ -37,7 +37,7 @@ public class CountryController {
     @GetMapping
     public ResponseEntity<List<CountryDTO>> getDetailsByFilters(
             @RequestParam(required = false) String name,
-            @RequestParam(required = false) String idContinente,
+            @RequestParam(required = false) Long idContinente,
             @RequestParam(required = false, defaultValue = "ASC") String order
     ){
 

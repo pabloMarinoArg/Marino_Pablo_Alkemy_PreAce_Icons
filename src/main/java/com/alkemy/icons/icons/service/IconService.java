@@ -12,6 +12,8 @@ public interface IconService {
     IconoDTO save (IconoDTO iconoDTO);
     List<IconoDTO> findAllIcons();
     List<IconoDTO> getByFilters(String name, String date, Set<Long> cities, String order);
+    IconoDTO findIconDtoById(Long id);
+    IconoDTO modify (Long id);
 
 
 }

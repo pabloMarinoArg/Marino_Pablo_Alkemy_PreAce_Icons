@@ -3,6 +3,7 @@ package com.alkemy.icons.icons.service.implementacion;
 import com.alkemy.icons.icons.dto.IconFiltersDTO;
 import com.alkemy.icons.icons.dto.IconoDTO;
 import com.alkemy.icons.icons.entity.IconsEntity;
+import com.alkemy.icons.icons.exception.ParamNotFound;
 import com.alkemy.icons.icons.mapper.IconMapper;
 import com.alkemy.icons.icons.repository.IconRepository;
 import com.alkemy.icons.icons.repository.specification.IconSpecification;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -36,6 +38,23 @@ public class IconServiceImple implements IconService {
         List<IconsEntity> listado = iconRepository.findAll();
 
         return iconMapper.listIconEntityToDto(listado,false);
+    }
+
+    @Override
+    public IconoDTO findIconDtoById(Long id) {
+        Optional<IconsEntity> iconoEntidad = iconRepository.findById(id);
+        if(!iconoEntidad.isPresent()){
+            throw new ParamNotFound("Icon id not valid");
+        }
+        IconoDTO iconoDTO = this.iconMapper.iconEntityToDto(iconoEntidad.get(),true);
+        return iconoDTO;
+
+
+    }
+
+    @Override
+    public IconoDTO modify(Long id) {
+        return null;
     }
 
     @Override
