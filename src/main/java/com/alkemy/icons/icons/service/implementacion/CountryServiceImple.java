@@ -1,9 +1,12 @@
 package com.alkemy.icons.icons.service.implementacion;
 
 import com.alkemy.icons.icons.dto.CountryDTO;
+import com.alkemy.icons.icons.dto.CountryFilterDTO;
+import com.alkemy.icons.icons.dto.IconoDTO;
 import com.alkemy.icons.icons.entity.CountryEntity;
 import com.alkemy.icons.icons.mapper.CountryMapper;
 import com.alkemy.icons.icons.repository.CountryRepository;
+import com.alkemy.icons.icons.repository.specification.CountrySpecification;
 import com.alkemy.icons.icons.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +19,8 @@ public class CountryServiceImple implements CountryService {
     private CountryMapper countryMapper;
     @Autowired
     private CountryRepository countryRepository;
-
+    @Autowired
+    private CountrySpecification countrySpecification;
 
     @Override
     public CountryDTO save(CountryDTO countryDTO) {
@@ -39,5 +43,13 @@ public class CountryServiceImple implements CountryService {
     @Override
     public void delete(Long id) {
         countryRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CountryDTO> getByFilters(String name, String idContinente, String order) {
+        CountryFilterDTO countryFilterDTO = new CountryFilterDTO(name, idContinente, order);
+        List<CountryEntity> entities = this.countryRepository.findAll(this.countrySpecification.getByFilters(countryFilterDTO));
+
+        return this.countryMapper.listCountryEntityToDTO(entities, true);
     }
 }

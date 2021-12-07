@@ -24,7 +24,7 @@ public class IconController {
          return ResponseEntity.status(HttpStatus.CREATED).body(iconSaved);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<IconoDTO>> findAllIcons(){
         List<IconoDTO> listadoDto = iconServiceImple.findAllIcons();
         return ResponseEntity.status(HttpStatus.OK).body(listadoDto);
