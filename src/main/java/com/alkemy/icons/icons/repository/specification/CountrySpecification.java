@@ -34,17 +34,17 @@ public class CountrySpecification {
                 );
             }
 
-            //si lo descomento todas las consultas vuelven con error
-         /*   if(!NumberUtils.STANDARD_NUMBER_TYPES.isEmpty()){
+
+            if(countryFilterDTO.getIdContinente() != null){
                 predicates.add(
                         criteriaBuilder.equal(
-                                criteriaBuilder.lower(root.get("idContinente")),
+                                root.get("continenteId"),
                                 countryFilterDTO.getIdContinente()
                         )
 
                 );
 
-            }*/
+            }
 
             //Remove duplicates
             query.distinct(true);

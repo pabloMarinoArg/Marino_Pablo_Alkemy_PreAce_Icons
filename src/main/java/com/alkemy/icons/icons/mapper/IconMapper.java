@@ -25,6 +25,7 @@ public class IconMapper {
         iconsEntity.setFechaCreacion(this.string2LocalDate(iconoDTO.getFechaCreacion()));
         iconsEntity.setAltura(iconoDTO.getAltura());
         iconsEntity.setHistoria(iconoDTO.getHistoria());
+
         return iconsEntity;
 
     }

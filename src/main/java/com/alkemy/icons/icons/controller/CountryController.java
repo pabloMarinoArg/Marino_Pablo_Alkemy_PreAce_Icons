@@ -28,6 +28,14 @@ public class CountryController {
 
     }
 
+    @PutMapping("/{idPais}/{idIcono}")
+    public ResponseEntity<CountryDTO> addIcon (@PathVariable("idPais") Long id, @PathVariable("idIcono") Long idI){
+
+       CountryDTO country = countryService.addIcon(id,idI);
+
+       return ResponseEntity.status(HttpStatus.OK).body(country);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<CountryDTO>> findAllcountries(){
         List<CountryDTO> listado = countryService.findAllCountries();

@@ -4,16 +4,21 @@ import com.alkemy.icons.icons.dto.CountryDTO;
 import com.alkemy.icons.icons.dto.CountryFilterDTO;
 import com.alkemy.icons.icons.dto.IconoDTO;
 import com.alkemy.icons.icons.entity.CountryEntity;
+import com.alkemy.icons.icons.entity.IconsEntity;
 import com.alkemy.icons.icons.exception.ParamNotFound;
 import com.alkemy.icons.icons.mapper.CountryMapper;
+import com.alkemy.icons.icons.mapper.IconMapper;
 import com.alkemy.icons.icons.repository.CountryRepository;
 import com.alkemy.icons.icons.repository.specification.CountrySpecification;
 import com.alkemy.icons.icons.service.CountryService;
+import com.alkemy.icons.icons.service.IconService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CountryServiceImple implements CountryService {
@@ -24,6 +29,12 @@ public class CountryServiceImple implements CountryService {
     @Autowired
     private CountrySpecification countrySpecification;
 
+    @Autowired
+    private IconService iconService;
+
+    @Autowired
+    private IconMapper iconMapper;
+
     @Override
     public CountryDTO save(CountryDTO countryDTO) {
 
@@ -32,6 +43,7 @@ public class CountryServiceImple implements CountryService {
 
         return countryMapper.countryEntityToDTO(countrySaved);
     }
+
 
 
 
@@ -63,6 +75,28 @@ public class CountryServiceImple implements CountryService {
         }
         CountryDTO countryDTO = this.countryMapper.countryEntityToDTO(countryEntity.get());
         return countryDTO;
+    }
+
+    @Override
+    public CountryDTO addIcon(Long idPais, Long idIcono) {
+
+        CountryEntity country = this.countryMapper.countryDTOtoEntity(getCountryById(idPais));
+
+        if(country == null){
+            throw new ParamNotFound("Country id is not valid");
+        }
+
+        IconsEntity icono = this.iconMapper.iconDtoToEntity(this.iconService.findIconDtoById(idIcono));
+        if(icono == null){
+            throw new ParamNotFound("Icon id is not valid");
+        }
+        Set<IconsEntity> lista = country.getIconos();
+
+        lista.add(icono);
+
+        return save(this.countryMapper.countryEntityToDTO(country));
+
+
     }
 
 

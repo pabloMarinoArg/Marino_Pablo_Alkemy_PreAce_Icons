@@ -1,5 +1,6 @@
 package com.alkemy.icons.icons.mapper;
 
+import com.alkemy.icons.icons.dto.CountryBasicDTO;
 import com.alkemy.icons.icons.dto.CountryDTO;
 import com.alkemy.icons.icons.dto.IconoDTO;
 import com.alkemy.icons.icons.entity.CountryEntity;
@@ -12,16 +13,21 @@ import java.util.Set;
 
 @Component
 public class CountryMapper {
-    /*
-    * countryDtoToEntity
-    * countryEntityToDto
-    * List<CountryEntity> listEntityToDto
-    * countryBasicDtoToEntity
-    * countryBasicEntityToDto
-    *
-    * */
-    /*@Autowired
-    private IconMapper iconMapper;*/
+
+    //@Autowired
+   // private IconMapper iconMapper;
+
+    public CountryBasicDTO countryBasicEntityToDto(CountryEntity entity){
+        CountryBasicDTO countryBasicDTO = new CountryBasicDTO();
+
+        countryBasicDTO.setId(entity.getId());
+        countryBasicDTO.setImagen(entity.getImagen());
+        countryBasicDTO.setDenominacion(entity.getImagen());
+        countryBasicDTO.setCantidadHabitantes(entity.getCantidadHabitantes());
+
+        return countryBasicDTO;
+
+    }
 
     public CountryEntity countryDTOtoEntity(CountryDTO countryDTO){
         CountryEntity country = new CountryEntity();
@@ -29,6 +35,7 @@ public class CountryMapper {
         country.setDenominacion(countryDTO.getDenominacion());
         country.setCantidadHabitantes(countryDTO.getCantidadHabitantes());
         country.setSuperficie(countryDTO.getSuperficie());
+
         country.setContinenteId(countryDTO.getContinenteId());
 
         return country;
@@ -57,4 +64,6 @@ public class CountryMapper {
 
         return list;
     }
+
+
 }

@@ -16,5 +16,6 @@ public interface CountryService {
     List<CountryDTO> getByFilters(String name, Long idContinente, String order);
     CountryDTO modify(CountryDTO countryDTO,Long id);
     CountryDTO getCountryById(Long id);
+    CountryDTO addIcon(Long idPais, Long idIcono);
 
 }
