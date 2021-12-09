@@ -26,7 +26,7 @@ public class EmailServiceImpl implements EmailService {
 
 
     @Override
-    public void sendWelcomeEmail(String to) {
+    public void sendWelcomeEmailTo(String to) {
         if (!enabled){
             return;
         }
